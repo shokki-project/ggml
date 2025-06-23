@@ -1,0 +1,21 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "amx",
+    srcs = [
+        "amx.cpp",
+        "mmq.cpp",
+    ],
+    hdrs = [
+        "amx.h",
+        "mmq.h",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [":common"],
+)
+
+cc_library(
+    name = "common",
+    hdrs = ["common.h"],
+    visibility = ["//visibility:public"],
+)

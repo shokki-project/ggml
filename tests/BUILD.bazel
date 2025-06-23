@@ -1,0 +1,91 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "test-arange",
+    srcs = ["test-arange.cpp"],
+)
+
+cc_test(
+    name = "test-backend-ops",
+    srcs = ["test-backend-ops.cpp"],
+)
+
+cc_test(
+    name = "test-cont",
+    srcs = ["test-cont.c"],
+)
+
+cc_test(
+    name = "test-conv-transpose",
+    srcs = ["test-conv-transpose.c"],
+)
+
+cc_test(
+    name = "test-conv-transpose-1d",
+    srcs = ["test-conv-transpose-1d.cpp"],
+)
+
+cc_test(
+    name = "test-conv1d",
+    srcs = ["test-conv1d.cpp"],
+)
+
+cc_test(
+    name = "test-conv2d",
+    srcs = ["test-conv2d.cpp"],
+)
+
+cc_test(
+    name = "test-conv2d-dw",
+    srcs = ["test-conv2d-dw.cpp"],
+)
+
+cc_test(
+    name = "test-customop",
+    srcs = ["test-customop.c"],
+)
+
+cc_test(
+    name = "test-dup",
+    srcs = ["test-dup.c"],
+)
+
+cc_test(
+    name = "test-opt",
+    srcs = ["test-opt.cpp"],
+)
+
+cc_test(
+    name = "test-pad-reflect-1d",
+    srcs = ["test-pad-reflect-1d.cpp"],
+)
+
+cc_test(
+    name = "test-pool",
+    srcs = ["test-pool.c"],
+)
+
+cc_test(
+    name = "test-quantize-fns",
+    srcs = ["test-quantize-fns.cpp"],
+)
+
+cc_test(
+    name = "test-quantize-perf",
+    srcs = ["test-quantize-perf.cpp"],
+)
+
+cc_test(
+    name = "test-rel-pos",
+    srcs = ["test-rel-pos.c"],
+)
+
+cc_test(
+    name = "test-roll",
+    srcs = ["test-roll.cpp"],
+)
+
+cc_test(
+    name = "test-timestep_embedding",
+    srcs = ["test-timestep_embedding.cpp"],
+)

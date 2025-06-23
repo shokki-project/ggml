@@ -1,0 +1,37 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+
+cc_binary(
+    name = "main-alloc",
+    srcs = ["main-alloc.cpp"],
+    deps = ["@mbedtls"],
+)
+
+cc_binary(
+    name = "main-backend",
+    srcs = ["main-backend.cpp"],
+    deps = ["@mbedtls"],
+)
+
+cc_binary(
+    name = "main-batched",
+    srcs = ["main-batched.cpp"],
+    deps = ["@mbedtls"],
+)
+
+cc_binary(
+    name = "main-ctx",
+    srcs = ["main-ctx.cpp"],
+    deps = ["@mbedtls"],
+)
+
+cc_binary(
+    name = "main-sched",
+    srcs = ["main-sched.cpp"],
+    deps = ["@mbedtls"],
+)
+
+cc_binary(
+    name = "quantize",
+    srcs = ["quantize.cpp"],
+    deps = ["@mbedtls"],
+)

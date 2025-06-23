@@ -1,0 +1,16 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "kernels",
+    srcs = ["kernels.cpp"],
+    hdrs = ["kernels.h"],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "kleidiai",
+    srcs = ["kleidiai.cpp"],
+    hdrs = ["kleidiai.h"],
+    visibility = ["//visibility:public"],
+    deps = [":kernels"],
+)

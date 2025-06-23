@@ -1,0 +1,19 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "cuda",
+    hdrs = ["cuda.h"],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "hip",
+    hdrs = ["hip.h"],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "musa",
+    hdrs = ["musa.h"],
+    visibility = ["//visibility:public"],
+)

@@ -1,0 +1,101 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "arch-fallback",
+    hdrs = ["arch-fallback.h"],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "binary-ops",
+    srcs = ["binary-ops.cpp"],
+    hdrs = ["binary-ops.h"],
+    visibility = ["//visibility:public"],
+    deps = [":common"],
+)
+
+cc_library(
+    name = "common",
+    hdrs = ["common.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":ggml-cpu-impl",
+        ":traits",
+    ],
+)
+
+cc_library(
+    name = "ggml-cpu-impl",
+    hdrs = ["ggml-cpu-impl.h"],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "hbm",
+    srcs = ["hbm.cpp"],
+    hdrs = ["hbm.h"],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "ops",
+    srcs = [
+        "ggml-cpu.c",
+        "ggml-cpu.cpp",
+        "ops.cpp",
+        "repack.cpp",
+        "vec.cpp",
+    ],
+    hdrs = [
+        "ops.h",
+        "repack.h",
+        "vec.h",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":arch-fallback",
+        ":binary-ops",
+        ":ggml-cpu-impl",
+        ":quants",
+        ":simd-mappings",
+        ":traits",
+        ":unary-ops",
+        "//src/ggml-cpu/amx",
+        "//src/ggml-cpu/llamafile:sgemm",
+        "@sed//:lib/sed",
+    ],
+)
+
+cc_library(
+    name = "quants",
+    srcs = ["quants.c"],
+    hdrs = ["quants.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":arch-fallback",
+        ":ggml-cpu-impl",
+    ],
+)
+
+cc_library(
+    name = "simd-mappings",
+    hdrs = ["simd-mappings.h"],
+    visibility = ["//visibility:public"],
+    deps = [":ggml-cpu-impl"],
+)
+
+cc_library(
+    name = "traits",
+    srcs = ["traits.cpp"],
+    hdrs = ["traits.h"],
+    visibility = ["//visibility:public"],
+    deps = [":ggml-cpu-impl"],
+)
+
+cc_library(
+    name = "unary-ops",
+    srcs = ["unary-ops.cpp"],
+    hdrs = ["unary-ops.h"],
+    visibility = ["//visibility:public"],
+    deps = [":common"],
+)

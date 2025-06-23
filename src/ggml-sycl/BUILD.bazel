@@ -1,0 +1,255 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "backend",
+    hdrs = ["backend.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":binbcast",
+        ":common",
+        ":concat",
+        ":conv",
+        ":convert",
+        ":cpy",
+        ":dequantize",
+        ":dmmv",
+        ":element_wise",
+        ":gla",
+        ":im2col",
+        ":mmq",
+        ":mmvq",
+        ":norm",
+        ":outprod",
+        ":quants",
+        ":rope",
+        ":softmax",
+        ":tsembd",
+        ":wkv",
+    ],
+)
+
+cc_library(
+    name = "binbcast",
+    srcs = ["binbcast.cpp"],
+    hdrs = ["binbcast.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [":common"],
+)
+
+cc_library(
+    name = "common",
+    srcs = ["common.cpp"],
+    hdrs = ["common.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":presets",
+        ":sycl_hw",
+        "//src/ggml-sycl/dpct:helper",
+    ],
+)
+
+cc_library(
+    name = "concat",
+    srcs = ["concat.cpp"],
+    hdrs = ["concat.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [":common"],
+)
+
+cc_library(
+    name = "conv",
+    srcs = ["conv.cpp"],
+    hdrs = ["conv.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [":common"],
+)
+
+cc_library(
+    name = "convert",
+    srcs = ["convert.cpp"],
+    hdrs = ["convert.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":common",
+        ":dequantize",
+        ":presets",
+    ],
+)
+
+cc_library(
+    name = "cpy",
+    srcs = ["cpy.cpp"],
+    hdrs = ["cpy.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":common",
+        ":dequantize",
+    ],
+)
+
+cc_library(
+    name = "dequantize",
+    hdrs = ["dequantize.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [":common"],
+)
+
+cc_library(
+    name = "dmmv",
+    srcs = ["dmmv.cpp"],
+    hdrs = ["dmmv.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":common",
+        ":convert",
+        ":dequantize",
+        ":presets",
+    ],
+)
+
+cc_library(
+    name = "element_wise",
+    srcs = ["element_wise.cpp"],
+    hdrs = ["element_wise.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [":common"],
+)
+
+cc_library(
+    name = "gemm",
+    hdrs = ["gemm.hpp"],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "getrows",
+    srcs = ["getrows.cpp"],
+    hdrs = ["getrows.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":common",
+        ":dequantize",
+    ],
+)
+
+cc_library(
+    name = "ggml-sycl",
+    srcs = ["ggml-sycl.cpp"],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "gla",
+    srcs = ["gla.cpp"],
+    hdrs = ["gla.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [":common"],
+)
+
+cc_library(
+    name = "im2col",
+    srcs = ["im2col.cpp"],
+    hdrs = ["im2col.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [":common"],
+)
+
+cc_library(
+    name = "mmq",
+    srcs = ["mmq.cpp"],
+    hdrs = ["mmq.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":common",
+        ":vecdotq",
+    ],
+)
+
+cc_library(
+    name = "mmvq",
+    srcs = ["mmvq.cpp"],
+    hdrs = ["mmvq.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":common",
+        ":quants",
+        ":vecdotq",
+    ],
+)
+
+cc_library(
+    name = "norm",
+    srcs = ["norm.cpp"],
+    hdrs = ["norm.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [":common"],
+)
+
+cc_library(
+    name = "outprod",
+    srcs = ["outprod.cpp"],
+    hdrs = ["outprod.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [":common"],
+)
+
+cc_library(
+    name = "presets",
+    hdrs = ["presets.hpp"],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "quants",
+    hdrs = ["quants.hpp"],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "rope",
+    srcs = ["rope.cpp"],
+    hdrs = ["rope.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [":common"],
+)
+
+cc_library(
+    name = "softmax",
+    srcs = ["softmax.cpp"],
+    hdrs = ["softmax.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [":common"],
+)
+
+cc_library(
+    name = "sycl_hw",
+    srcs = ["sycl_hw.cpp"],
+    hdrs = ["sycl_hw.hpp"],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "tsembd",
+    srcs = ["tsembd.cpp"],
+    hdrs = ["tsembd.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [":common"],
+)
+
+cc_library(
+    name = "vecdotq",
+    hdrs = ["vecdotq.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":quants",
+        "//src/ggml-sycl/dpct:helper",
+    ],
+)
+
+cc_library(
+    name = "wkv",
+    srcs = ["wkv.cpp"],
+    hdrs = ["wkv.hpp"],
+    visibility = ["//visibility:public"],
+    deps = [":common"],
+)

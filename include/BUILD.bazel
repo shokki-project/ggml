@@ -1,0 +1,153 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "ggml",
+    hdrs = ["ggml.h"],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "ggml-alloc",
+    hdrs = ["ggml-alloc.h"],
+    visibility = ["//visibility:public"],
+    deps = [":ggml"],
+)
+
+cc_library(
+    name = "ggml-backend",
+    hdrs = ["ggml-backend.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":ggml",
+        ":ggml-alloc",
+    ],
+)
+
+cc_library(
+    name = "ggml-blas",
+    hdrs = ["ggml-blas.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":ggml",
+        ":ggml-backend",
+    ],
+)
+
+cc_library(
+    name = "ggml-cann",
+    hdrs = ["ggml-cann.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":ggml",
+        ":ggml-backend",
+    ],
+)
+
+cc_library(
+    name = "ggml-cpp",
+    hdrs = ["ggml-cpp.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":ggml",
+        ":ggml-alloc",
+        ":ggml-backend",
+        ":gguf",
+    ],
+)
+
+cc_library(
+    name = "ggml-cpu",
+    hdrs = ["ggml-cpu.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":ggml",
+        ":ggml-backend",
+    ],
+)
+
+cc_library(
+    name = "ggml-cuda",
+    hdrs = ["ggml-cuda.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":ggml",
+        ":ggml-backend",
+    ],
+)
+
+cc_library(
+    name = "ggml-kompute",
+    hdrs = ["ggml-kompute.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":ggml",
+        ":ggml-backend",
+    ],
+)
+
+cc_library(
+    name = "ggml-metal",
+    hdrs = ["ggml-metal.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":ggml",
+        ":ggml-backend",
+    ],
+)
+
+cc_library(
+    name = "ggml-opencl",
+    hdrs = ["ggml-opencl.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":ggml",
+        ":ggml-backend",
+    ],
+)
+
+cc_library(
+    name = "ggml-opt",
+    hdrs = ["ggml-opt.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":ggml",
+        ":ggml-backend",
+    ],
+)
+
+cc_library(
+    name = "ggml-rpc",
+    hdrs = ["ggml-rpc.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":ggml",
+        ":ggml-backend",
+    ],
+)
+
+cc_library(
+    name = "ggml-sycl",
+    hdrs = ["ggml-sycl.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":ggml",
+        ":ggml-backend",
+    ],
+)
+
+cc_library(
+    name = "ggml-vulkan",
+    hdrs = ["ggml-vulkan.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":ggml",
+        ":ggml-backend",
+    ],
+)
+
+cc_library(
+    name = "gguf",
+    hdrs = ["gguf.h"],
+    visibility = ["//visibility:public"],
+    deps = [":ggml"],
+)

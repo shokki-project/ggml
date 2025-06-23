@@ -1,0 +1,10 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+
+cc_binary(
+    name = "sam",
+    srcs = ["sam.cpp"],
+    deps = [
+        "@stb//:stb_image",
+        "@stb//:stb_image_write",
+    ],
+)

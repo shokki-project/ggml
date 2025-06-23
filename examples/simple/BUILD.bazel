@@ -1,0 +1,11 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+
+cc_binary(
+    name = "simple-backend",
+    srcs = ["simple-backend.cpp"],
+)
+
+cc_binary(
+    name = "simple-ctx",
+    srcs = ["simple-ctx.cpp"],
+)

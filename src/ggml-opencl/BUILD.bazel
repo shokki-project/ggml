@@ -1,0 +1,7 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "ggml-opencl",
+    srcs = ["ggml-opencl.cpp"],
+    visibility = ["//visibility:public"],
+)

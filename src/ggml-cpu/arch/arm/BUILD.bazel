@@ -1,0 +1,24 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "cpu-feats",
+    srcs = ["cpu-feats.cpp"],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "quants",
+    srcs = ["quants.c"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/ggml-cpu:ggml-cpu-impl",
+        "//src/ggml-cpu:quants",
+    ],
+)
+
+cc_library(
+    name = "repack",
+    srcs = ["repack.cpp"],
+    visibility = ["//visibility:public"],
+    deps = ["//src/ggml-cpu:ops"],
+)

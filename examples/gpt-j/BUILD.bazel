@@ -1,0 +1,13 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+
+cc_binary(
+    name = "main",
+    srcs = ["main.cpp"],
+    deps = ["@mbedtls"],
+)
+
+cc_binary(
+    name = "quantize",
+    srcs = ["quantize.cpp"],
+    deps = ["@mbedtls"],
+)

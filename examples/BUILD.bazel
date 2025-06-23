@@ -1,0 +1,28 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "common",
+    srcs = ["common.cpp"],
+    hdrs = ["common.h"],
+    visibility = ["//visibility:public"],
+    deps = ["@mbedtls"],
+)
+
+cc_library(
+    name = "common-ggml",
+    srcs = ["common-ggml.cpp"],
+    hdrs = ["common-ggml.h"],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "stb_image",
+    hdrs = ["stb_image.h"],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "stb_image_write",
+    hdrs = ["stb_image_write.h"],
+    visibility = ["//visibility:public"],
+)

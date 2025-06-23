@@ -1,0 +1,46 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "ggml-backend-impl",
+    srcs = [
+        "ggml.c",
+        "ggml.cpp",
+        "ggml-alloc.c",
+        "ggml-backend.cpp",
+        "ggml-quants.c",
+        "ggml-threading.cpp",
+        "gguf.cpp",
+    ],
+    hdrs = [
+        "ggml-backend-impl.h",
+        "ggml-impl.h",
+        "ggml-quants.h",
+        "ggml-threading.h",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":ggml-common",
+        "//src/ggml-cpu:ggml-cpu-impl",
+        "@sed//:lib/sed",
+    ],
+)
+
+cc_library(
+    name = "ggml-backend-reg",
+    srcs = ["ggml-backend-reg.cpp"],
+    visibility = ["//visibility:public"],
+    deps = [":ggml-backend-impl"],
+)
+
+cc_library(
+    name = "ggml-common",
+    hdrs = ["ggml-common.h"],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "ggml-opt",
+    srcs = ["ggml-opt.cpp"],
+    visibility = ["//visibility:public"],
+    deps = [":ggml-backend-impl"],
+)

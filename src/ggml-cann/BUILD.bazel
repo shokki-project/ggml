@@ -1,0 +1,34 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "acl_tensor",
+    srcs = ["acl_tensor.cpp"],
+    hdrs = ["acl_tensor.h"],
+    visibility = ["//visibility:public"],
+    deps = [":common"],
+)
+
+cc_library(
+    name = "aclnn_ops",
+    srcs = ["aclnn_ops.cpp"],
+    hdrs = ["aclnn_ops.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":acl_tensor",
+        ":common",
+        "//src:ggml-common",
+    ],
+)
+
+cc_library(
+    name = "common",
+    hdrs = ["common.h"],
+    visibility = ["//visibility:public"],
+    deps = ["//src:ggml-backend-impl"],
+)
+
+cc_library(
+    name = "ggml-cann",
+    srcs = ["ggml-cann.cpp"],
+    visibility = ["//visibility:public"],
+)

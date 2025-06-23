@@ -1,0 +1,26 @@
+"""Bazel Project for GGML"""
+
+module(
+    name = "ggml",
+    version = "1.0.0",
+    compatibility_level = 1,
+)
+
+bazel_dep(name = "rules_cc", version = "0.1.1")
+bazel_dep(name = "sed", version = "4.9.bcr.2")
+bazel_dep(name = "stb", version = "0.0.0-20241109-5c20573")
+bazel_dep(name = "mbedtls", version = "3.6.0")
+
+bazel_dep(name = "hermetic_cc_toolchain", version = "4.0.1", dev_dependency = True)
+bazel_dep(name = "gazelle", version = "0.44.0", dev_dependency = True)
+bazel_dep(name = "gazelle_cc", version = "0.1.0", dev_dependency = True)
+
+toolchains = use_extension("@hermetic_cc_toolchain//toolchain:ext.bzl", "toolchains")
+use_repo(toolchains, "zig_sdk")
+
+register_toolchains(
+    "@zig_sdk//libc_aware/toolchain:linux_amd64_gnu.2.31",
+    "@zig_sdk//libc_aware/toolchain:linux_arm64_gnu.2.31",
+    "@zig_sdk//toolchain:windows_amd64",
+    "@zig_sdk//toolchain:windows_arm64",
+)
